@@ -1,0 +1,78 @@
+{% load bootstrap4 %}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Pizzas</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    {% bootstrap_css %}
+    {% bootstrap_javascript jquery='full' %}
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-md navbar-light bg-light mb-4 border">
+        <a class="navbar-brand" href="{% url 'pizzas:index' %}">Pizzzas</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#navbarCollapse" aria-controls="navbarCollapse"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon">123</span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'pizzas:pizzas' %}">
+                       <span>Pizzas list</span>
+                    </a>
+                </li>
+            </ul>
+            <ul class="navbar-nav justify-content-end">
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                       <span> Hello, {{ user.username }}</span>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'users:logout' %}">log out</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'users:register' %}"><span>Register</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'users:login' %}">Log in</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+<main role="main" class="container">
+    <div class="pb-2 mb-2 border-bottom">
+        {% block page_header %} {% endblock page_header %}
+    </div>
+    <div>
+        {% block content %} {% endblock content %}
+    </div>
+</main>
+
+</body>
+</html>
+
+
+
+
+<!--<p>-->
+<!--    <a href="{% url 'pizzas:index' %}"> Homepage </a> - -->
+<!--    <a href="{% url 'pizzas:pizzas' %}"> Pizzas </a> - -->
+<!--    {% if user.is_authenticated %}-->
+<!--        Hello, {{ user.username }}-->
+<!--        <a href="{% url 'users:logout' %}">log out</a>-->
+<!--    {% else %}-->
+<!--        <a href="{% url 'users:register' %}">Register</a> - -->
+<!--        <a href="{% url 'users:login' %}">Log in</a>-->
+<!--    {% endif %}-->
+<!--</p>-->
+
+
